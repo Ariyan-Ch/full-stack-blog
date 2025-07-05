@@ -1,4 +1,7 @@
 import { useState} from "react";
+import ImageB from "./ImageB";
+import { Link } from "react-router";
+import { SignedIn, SignedOut, SignIn, UserButton } from "@clerk/clerk-react";
 
 const Navbar = () => {
 
@@ -7,10 +10,10 @@ const Navbar = () => {
 
     <div className='w-full h-16 md:h-20 flex items-center justify-between'>
         {/* LOGO */}
-        <div className='flex items-center gap-4 text-2xl font-bold'>
-            <img src="/logo.png" className="w-8 h-8"alt="logo" />
+        <Link to="/" className='flex items-center gap-4 text-2xl font-bold'>
+            <ImageB src="/logo.png" className="w-8 h-8" alt="logo"/>
             <span>DevLog.</span>
-        </div>
+        </Link>
         {/* HIDDENMENU */}
         <div className="md:hidden">
                 {/* HiddenButton */}
@@ -21,24 +24,30 @@ const Navbar = () => {
             <div className={`w-full h-screen flex flex-col items-center justify-center absolute top-16 transition-all ease-in-out gap-8 text-lg font-medium
                  ${open? "-right-0":"-right-[100%]"} `}>
                 {/* HiddenList */}
-                <a href="/">HOME</a>
-                <a href="/">Trending</a>
-                <a href="/">Popular</a>
-                <a href="/">About</a>
-                <a href="/">
+                <Link to="/">HOME</Link>
+                <Link to="/">Trending</Link>
+                <Link to="/">Popular</Link>
+                <Link to="/">About</Link>
+                <Link to="/">
                 <button className="py-2 px-4 rounded-3xl bg-[#348feb] hover:bg-[#34abeb] text-white">Login 🔑</button>
-                </a>
+                </Link>
             </div>
         </div>
         {/* BARMENU */}
         <div className="hidden md:flex items-center gap-8 xl:gap-12 font-medium 2xl:gap-14">
-            <a href="/">HOME</a>
-            <a href="/">Trending</a>
-            <a href="/">Popular</a>
-            <a href="/">About</a>
-            <a href="/">
-            <button className="py-2 px-4 rounded-3xl bg-[#348feb] hover:bg-[#34abeb] text-white">Login 🔑</button>
-            </a>
+            <Link to="/">HOME</Link>
+            <Link to="/">Trending</Link>
+            <Link to="/">Popular</Link>
+            <Link to="/">About</Link>
+            <SignedOut>
+                <Link to="/login">
+                <button className="py-2 px-4 rounded-3xl bg-[#348feb] hover:bg-[#34abeb] text-white">Login 🔑</button>
+                </Link>
+            </SignedOut>
+            <SignedIn>
+                <UserButton />
+            </SignedIn>
+
         </div>
     </div>
   )
