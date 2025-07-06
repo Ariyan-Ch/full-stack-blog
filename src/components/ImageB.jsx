@@ -1,4 +1,4 @@
-import { Image } from '@imagekit/react';
+import { Image} from '@imagekit/react';
 
 
 const ImageB = ({src,className,w,h,alt}) => {
@@ -8,8 +8,14 @@ const ImageB = ({src,className,w,h,alt}) => {
         width = {w}
         height = {h}
         loading = "lazy"
+        lqip = {{active:true, quality:20}}
+        transformation={[
+          {
+            width:w,
+            height:h,
 
-
+          }
+        ]}
     />
   )
 }

@@ -7,7 +7,7 @@ const FeaturedPosts = () => {
         {/* first */}
         <div className="w-full lg:w-1/2 flex flex-col gap-4">
             {/* image */}
-            <ImageB src="featured1.jpeg" className="rounded-3xl  object-cover"/>
+            <ImageB src="featured1.jpeg" className="rounded-3xl  object-cover" w="895"/>
             {/* details */}
             <div className="flex items-center gap-4">
                 <h1 className="font-semibold lg:text-lg">01.</h1>
@@ -22,7 +22,9 @@ const FeaturedPosts = () => {
         <div className="w-full lg:w-1/2 flex flex-col gap-4">
             {/* second */}
             <div className="lg:h-1/3 flex gap-4 justify-between">
-                <ImageB src="featured2.jpeg" className="rounded-3xl object-cover w-1/3 aspect-video"/>
+                <div className="w-1/3 aspect-video">
+                    <ImageB src="featured2.jpeg" className="rounded-3xl object-cover w-full h-full" w="298"/>
+                </div>
                 {/* details and title */}
                 <div className="w-2/3">
                     <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
@@ -36,7 +38,9 @@ const FeaturedPosts = () => {
             </div>
             {/* third */}
             <div className="lg:h-1/3 flex gap-4 justify-between">
-                <ImageB src="featured3.jpeg" className="rounded-3xl object-cover w-1/3 aspect-video"/>
+                <div className="w-1/3 aspect-video">
+                    <ImageB src="featured3.jpeg" className="rounded-3xl object-cover w-full h-full" w="298"/>
+                </div>                
                 {/* details and title */}
                 <div className="w-2/3">
                     <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
@@ -50,7 +54,9 @@ const FeaturedPosts = () => {
             </div>
             {/* fourth */}
             <div className="lg:h-1/3 flex gap-4 justify-between">
-                <ImageB src="featured4.jpeg" className="rounded-3xl object-cover w-1/3 aspect-video"/>
+                <div className="w-1/3 aspect-video">
+                    <ImageB src="featured4.jpeg" className="rounded-3xl object-cover w-full h-full" w="298"/>
+                </div>                
                 {/* details and title */}
                 <div className="w-2/3">
                     <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
