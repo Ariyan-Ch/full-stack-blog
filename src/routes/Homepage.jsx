@@ -1,5 +1,7 @@
 import { Link } from "react-router"
 import MainCategories from "../components/MainCategories"
+import FeaturedPosts from "../components/FeaturedPosts"
+import Posts from "../components/Posts"
 
 const Homepage = () => {
   return (
@@ -24,8 +26,8 @@ const Homepage = () => {
         {/* animated buttonen */}
         <Link to="write" className="hidden md:block relative">
           <svg viewBox="0 0 200 200" width="200" height="200" 
-            className="text-lg tracking-widest animate-spin animatedButton" 
-            //className="text-lg tracking-widest" 
+            //className="text-lg tracking-widest animate-spin animatedButton" 
+            className="text-lg tracking-widest" 
           > 
             <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" fill="none" />
             <text><textPath href="#circlePath" startOffset="0%">Write your story.</textPath>  </text>
@@ -41,9 +43,13 @@ const Homepage = () => {
       <MainCategories></MainCategories>
 
       {/* FEATURED */}
+      <FeaturedPosts />
 
       {/* POSTLIST */}
-
+      <div className="">
+        <h1 className="my-8 text-2xl text-gray-600">Recent Posts</h1>
+        <Posts />
+      </div>
     </div>
   )
 }
