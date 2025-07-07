@@ -2,6 +2,7 @@ import { Link } from "react-router"
 import ImageB from "../components/ImageB"
 import PostMenuAction from "../components/PostMenuAction"
 import Search from "../components/Search"
+import Comments from "../components/Comments"
 const SinglePost = () => {
   return (
     <div className='flex flex-col gap-8'>
@@ -151,9 +152,11 @@ const SinglePost = () => {
           <h1 className="mt-8 mb-4 text-sm font-medium">Search</h1>
           <Search></Search>
         </div>
-
       </div>
 
+      {/* comments */}
+      <Comments></Comments>
+      
     </div>
   )
 }
