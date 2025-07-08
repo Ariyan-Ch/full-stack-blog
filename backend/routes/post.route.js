@@ -4,7 +4,6 @@ import { getPosts, getPost, createPost, deletePost } from "../controllers/post.c
 const router = express.Router()
 
 router.get("/", getPosts)
-
 router.get("/:slug", getPost)
 
 router.post("/", createPost)

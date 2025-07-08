@@ -1,4 +1,5 @@
 import Post from "../models/post.model.js"
+import userModel from "../models/user.model.js";
 
 
 export const getPosts = async (req,res)=>{
@@ -14,14 +15,51 @@ export const getPost = async (req,res)=>{
 
 export const createPost = async (req,res)=>{
 
-    const newPost = new Post(req.body)
+    const clerkUserId = req.auth.userId;
+    
+    if(!clerkUserId){
+        return res.status(401).json("Not Authenticated")
+    }
+
+    const user = await userModel.findOne({clerkUserId})
+    if(!user){
+        return res.status(401).json("User not found.")
+    }
+
+    let slug = req.body.title.replace(/ /g,"-").toLowerCase();
+
+    let existingPost = await Post.findOne({slug});
+    let counter=1
+    while(existingPost){
+        counter++;
+        let slugT = `${slug}-${counter}`
+        existingPost = await Post.findOne({slug:slugT});
+    }
+    slug = `${slug}-${counter}`
+
+    const newPost = new Post({user:user._id, slug, ...req.body})
 
     const post = await newPost.save()
     res.status(200).json(post);
 };
 
 export const deletePost = async (req,res)=>{
+    const clerkUserId = req.auth.userId;
+    
+    if(!clerkUserId){
+        return res.status(401).json("Not Authenticated")
+    }
 
-    const post = await Post.findByIdAndDelete(req.params.id);
+    const user = await userModel.findOne({clerkUserId})
+    if(!user){
+        return res.status(401).json("User not found.")
+    }
+
+    const post = await Post.findByIdAndDelete({_id:req.params.id, user:user._id});
+
+    if (!post){
+        return res.status(403).json("No post found under such username.")
+    }
+
     res.status(200).json("Post has been deleted.");
 };
