@@ -1,6 +1,6 @@
 import Post from "../models/post.model.js"
 import userModel from "../models/user.model.js";
-
+import ImageKit from "imagekit";
 
 export const getPosts = async (req,res)=>{
     const posts = await Post.find();
@@ -15,7 +15,7 @@ export const getPost = async (req,res)=>{
 
 export const createPost = async (req,res)=>{
 
-    const clerkUserId = req.auth.userId;
+    const clerkUserId = req.auth().userId;
     
     if(!clerkUserId){
         return res.status(401).json("Not Authenticated")
@@ -44,7 +44,7 @@ export const createPost = async (req,res)=>{
 };
 
 export const deletePost = async (req,res)=>{
-    const clerkUserId = req.auth.userId;
+    const clerkUserId = req.auth().userId;
     
     if(!clerkUserId){
         return res.status(401).json("Not Authenticated")
@@ -62,4 +62,16 @@ export const deletePost = async (req,res)=>{
     }
 
     res.status(200).json("Post has been deleted.");
+};
+
+
+const imagekit = new ImageKit({
+    urlEndpoint: process.env.IK_URL_ENDPOINT,
+    publicKey: process.env.IK_PUBLIC_KEY,
+    privateKey: process.env.IK_PRIVATE_KEY,
+});
+  
+export const uploadAuth = async (req, res) => {
+    const result = imagekit.getAuthenticationParameters();
+    res.send(result);
 };
