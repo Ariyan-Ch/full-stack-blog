@@ -11,13 +11,16 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.32.4",
+    "@imagekit/react": "^5.0.1",
     "@tanstack/react-query": "^5.81.5",
     "axios": "^1.10.0",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-quill-new": "^3.4.6",
     "react-router": "^7.6.3",
-    "react-toastify": "^11.0.5"
+    "react-toastify": "^11.0.5",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
@@ -33,5 +36,8 @@
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
     "vite": "^5.4.10"
+  },
+  "overrides": {
+    "@imagekit/javascript": "5.0.0"
   }
 }
