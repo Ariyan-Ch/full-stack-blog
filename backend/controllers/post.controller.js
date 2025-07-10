@@ -59,6 +59,13 @@ export const deletePost = async (req,res)=>{
     if(!clerkUserId){
         return res.status(401).json("Not Authenticated")
     }
+    const role = req.auth().sessionClaims?.metadata?.role || "user";
+
+    if (role === "admin"){
+        await Post.findByIdAndDelete({_id:req.params.id})
+        return res.status(200).json("Post has been deleted.");
+
+    }
 
     const user = await userModel.findOne({clerkUserId})
     if(!user){
@@ -74,6 +81,36 @@ export const deletePost = async (req,res)=>{
     res.status(200).json("Post has been deleted.");
 };
 
+export const featurePost = async (req,res)=>{
+    const clerkUserId = req.auth().userId;
+    const postId = req.body.postId;
+
+    if(!clerkUserId){
+        return res.status(401).json("Not Authenticated")
+    }
+    const role = req.auth().sessionClaims?.metadata?.role || "user";
+
+    if (role !== "admin"){
+        return res.status(401).json("Only allowed by admin.");
+
+    }
+
+    const post = await Post.findById(postId);
+
+    if (!post){
+        return res.status(404).json("Post not found.");
+    }
+
+    const isFeatured = post.isFeatured;
+
+    const updatedPost = await Post.findByIdAndUpdate(postId,{
+        isFeatured:!isFeatured,
+    },
+    {new:true},
+    )
+    res.status(200).json(updatedPost);
+};
+
 
 const imagekit = new ImageKit({
     urlEndpoint: process.env.IK_URL_ENDPOINT,
@@ -85,3 +122,4 @@ export const uploadAuth = async (req, res) => {
     const result = imagekit.getAuthenticationParameters();
     res.send(result);
 };
+
