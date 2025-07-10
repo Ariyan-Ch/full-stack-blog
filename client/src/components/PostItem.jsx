@@ -20,7 +20,7 @@ const PostItem = ({post}) => {
             <Link to={`/${post.slug}`} className="text-4xl font-semibold">{post.title}</Link>
             <div className="flex items-center gap-2 text-sm text-gray-400">
                 <span>Written by</span>
-                <Link className="text-blue-700">{post.user.username}</Link>
+                <Link className="text-blue-700" to={`/posts?author=${post.user.username}`}>{post.user.username}</Link>
                 <span>on</span>
                 <Link className="text-blue-700">{post.category}</Link>
                 <span>{format(post.createdAt)}</span>

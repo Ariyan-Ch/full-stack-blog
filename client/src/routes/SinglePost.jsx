@@ -56,9 +56,9 @@ const SinglePost = () => {
 
       </div>
       {/* content */}
-      <div className="flex flex-col md:flex-row gap-12">
+      <div className="flex flex-col md:flex-row gap-12 justify-between">
         {/* text */}
-        <div className="flex-1 lg:text-lg flex flex-col gap-6 text-justify" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content) }}></div>
+        <div className="lg:text-lg flex flex-col gap-6 text-justify" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content) }}></div>
         {/* sideMenu */}
         <div className="p-4 h-max sticky top-8">
           <h1 className="mb-4 text-sm font-medium">Author</h1>
