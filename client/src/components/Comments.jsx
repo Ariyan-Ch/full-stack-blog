@@ -1,8 +1,7 @@
-import { useParams } from "react-router";
 import CommentItem from "./CommentItem"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { useAuth } from "@clerk/clerk-react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 import { toast } from "react-toastify";
 
 
@@ -20,6 +19,7 @@ const Comments = ({postId}) => {
 
 
   const {getToken} = useAuth();
+  const {user} = useUser();
 
   const {isPending, error, data} = useQuery({
       queryKey:["comments",postId],
@@ -67,9 +67,31 @@ const Comments = ({postId}) => {
         </form>
 
 
+        {isPending? "Loading Comment...": error?  "There was an error..." :(
+        
+        <>
+        {
+          mutation.isPending && (
+            <CommentItem comment={
+              {
+                description: `${mutation.variables.description} (Sending...)`,
+                createdAt: new Date(),
+                user:{
+                  img: user.imageUrl,
+                  username: user.username,
+                }
+              }
+            }
+            />
+          )
+        }
+
         {data.map((comment) => (
           <CommentItem key={comment._id} comment={comment} postId={postId} />
         ))}
+
+        </>)
+      }
     </div>
   )
 }

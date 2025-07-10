@@ -6,6 +6,7 @@ import Comments from "../components/Comments"
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { format } from "timeago.js"
+import DOMPurify from 'dompurify';
 
 
 const fetchPost = async (slug)=>{
@@ -57,87 +58,7 @@ const SinglePost = () => {
       {/* content */}
       <div className="flex flex-col md:flex-row gap-12">
         {/* text */}
-        <div className="lg:text-lg flex flex-col gap-6 text-justify">
-          <p className="">
-                Lorem Ipsum, dolor sit amet construcotir adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir. adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-                adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-          </p>
-          <p className="">
-                Lorem Ipsum, dolor sit amet construcotir adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir. adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-                adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-          </p>
-          <p className="">
-                Lorem Ipsum, dolor sit amet construcotir adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir. adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-                adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-          </p>
-          <p className="">
-                Lorem Ipsum, dolor sit amet construcotir adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir. adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-                adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-          </p>
-          <p className="">
-                Lorem Ipsum, dolor sit amet construcotir adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir. adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-                adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-          </p>
-          <p className="">
-                Lorem Ipsum, dolor sit amet construcotir adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir. adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-                adipscing elit. Lorem Ipsum, dolor sit
-                amet construcotir amet construcotir. Lorem Ipsum, dolor sit adipscing elit. Lorem Ipsum, dolor 
-                sit amet construcotir adipscing elit.  Lorem Ipsum, dolor sit amet construcotir adipscing elit.
-                Lorem Ipsum, dolor sit amet construcotir.
-          </p>
-
-        </div>
+        <div className="flex-1 lg:text-lg flex flex-col gap-6 text-justify" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.content) }}></div>
         {/* sideMenu */}
         <div className="p-4 h-max sticky top-8">
           <h1 className="mb-4 text-sm font-medium">Author</h1>
@@ -157,7 +78,7 @@ const SinglePost = () => {
             </div>
           </div>
           
-          <PostMenuAction ></PostMenuAction>
+          <PostMenuAction post={data} ></PostMenuAction>
 
           <h1 className="mt-8 mb-4 text-sm font-medium">Categories</h1>
           <div className='flex flex-col gap-2 text-sm'> 

@@ -24,7 +24,7 @@ const WritePage = () => {
 
 
   useEffect(() => {
-    img && setValue((prev) => prev + `<p><image src="${img.url}"/></p>`);
+    img && setValue((prev) => prev + `<p><img src="${img.url}"/></p>`);
   }, [img]);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const WritePage = () => {
       desc: formData.get("desc"),
       content: value,
     };
-    console.log(data)
+   // console.log(data)
 
     mutation.mutate(data);
   }
